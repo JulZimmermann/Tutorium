@@ -1,8 +1,6 @@
 package termin17Januar18.uebung;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class MannschaftMain {
 
@@ -30,8 +28,21 @@ public class MannschaftMain {
                 for(Spieler spieler : mannschaft.getSpieler()) {
                     System.out.println(spieler.getName());
                 }
+
+                sort(manschaften);
             }
 
+        }
+
+    }
+
+    private static void sort(Map<String, Mannschaft> mannschaftMap) {
+        Collection<Mannschaft> manschaftenColl = mannschaftMap.values();
+        List<Mannschaft> manschaftenList = new ArrayList(manschaftenColl);
+        Collections.sort(manschaftenList);
+
+        for(Mannschaft mannschaft : manschaftenList) {
+            System.out.println(mannschaft.getName());
         }
 
     }
