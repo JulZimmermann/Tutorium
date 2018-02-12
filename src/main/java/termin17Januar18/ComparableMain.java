@@ -2,6 +2,7 @@ package termin17Januar18;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ComparableMain {
@@ -23,7 +24,7 @@ public class ComparableMain {
         autos.add(a1);
 
         Collections.sort(autos);
-        Collections.sort(autos, new AutoKennzeichenComparator());
+        Collections.sort(autos, Comparator.comparing(a -> a.kennzeichen));
     }
 
 }

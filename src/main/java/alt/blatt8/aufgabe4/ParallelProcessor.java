@@ -34,6 +34,14 @@ public class ParallelProcessor<T> {
 
             Thread thread = new Thread(() -> processElement(j));
 
+            Thread t = new Thread() {
+                @Override
+                public void run() {
+                    processElement(j);
+                }
+            };
+
+
             threads.add(thread);
             thread.start();
         }

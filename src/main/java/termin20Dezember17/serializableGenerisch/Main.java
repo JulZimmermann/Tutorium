@@ -19,7 +19,7 @@ public class Main {
 
         Datenbank<Film> neu = new Datenbank<>();
 
-        readFromFile("serializeFilme.txt", neu);
+        readFromFile(Film.class,"serializeFilme.txt", neu);
 
         for(Film film : neu.getItem()) {
             System.out.println(film.getName());
@@ -36,7 +36,7 @@ public class Main {
 
         Datenbank<Auto> neu = new Datenbank<>();
 
-        readFromFile("serializeAutos.txt", neu);
+        readFromFile(Auto.class,"serializeAutos.txt", neu);
 
         for(Auto auto : neu.getItem()) {
             System.out.println(auto.getFarbe());
@@ -53,12 +53,15 @@ public class Main {
         }
     }
 
-    private static <T extends Serializable> void readFromFile(String file, Datenbank<T> datenbank) {
+    private static <T extends Serializable> void readFromFile(Class<T> clazz, String file, Datenbank<T> datenbank) {
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
             while (true) {
                 try {
-                    T item = (T) ois.readObject();
-                    datenbank.addItem(item);
+                    Object obj = ois.readObject();
+                    if(clazz.isInstance(obj)) {
+                        datenbank.addItem(clazz.cast(obj));
+                    }
+
                 } catch (EOFException e) {
                     break;
                 }

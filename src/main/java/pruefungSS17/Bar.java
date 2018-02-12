@@ -1,4 +1,7 @@
 package pruefungSS17;
 
-public class Bar {
+public interface Bar extends Foo {
+
+    void bar();
+
 }
