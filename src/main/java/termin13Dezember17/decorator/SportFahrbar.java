@@ -10,8 +10,11 @@ public class SportFahrbar implements Fahrbar {
 
     @Override
     public void fahren() {
-        System.out.println("Ich bin so schnell");
-        fahrbar.fahren();
+        Runnable r = () -> fahrbar.fahren();
+
+        new Thread(r).start();
+        new Thread(r).start();
+
     }
 
 }
